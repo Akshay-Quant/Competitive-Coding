@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--){
+        string s;
+        cin>>s;
+        int l=0,flag=0;
+        int h=s.length()-1;
+        while(h>l){
+            if(s[l++]!=s[h--]){
+                flag=1;
+            }
+        }
+        if(flag==1){
+                cout<<"NO"<<endl;
+        }else{
+            if(((s.length())%2)==0){
+                cout<<"YES"<<" "<<"EVEN"<<endl;
+            }else{
+                cout<<"YES"<<" "<<"ODD"<<endl;
+            }  
+        } 
+    }
+    return 0;
+}
