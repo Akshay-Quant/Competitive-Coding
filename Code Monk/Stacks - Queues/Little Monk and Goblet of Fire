@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+queue <int> q[5],que;
+
+int main(){
+	int query;
+	cin>>query;
+	while(query--){
+		char op;
+		cin>>op;
+		if(op=='E'){
+			int school,roll;
+			cin>>school>>roll;
+			if(q[school].empty())
+			    que.push(school);
+			q[school].push(roll);
+		}else if(op=='D'){
+	        int temp=que.front();
+	        cout<<temp<<" "<<q[temp].front()<<endl;
+	        q[temp].pop();
+	        if(q[temp].empty()){
+	            que.pop();
+	        }
+	    }
+	}
+	return 0;
+}
