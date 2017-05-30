@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+ll arr[1005][1005];
+ 
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    ll flag[n][m];
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            cin>>arr[i][j];
+            flag[i][j]=0;
+        }
+    }
+    ll finalv1v2=0,finalv3v4=0,v1,v2,v3,v4;
+    cin>>v1>>v2>>v3>>v4;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            flag[i][j]=arr[i][j]+v1;
+        }
+        ll sum1=0,sum2=0;
+        for(int k=0;k<m;k++){
+            sum1=sum1+abs(arr[i][k]);
+            sum2=sum2+abs(flag[i][k]);
+        }
+        ll sum3=abs(m*v2);
+        ll v1v2=max(sum2,sum3);
+        finalv1v2+=max(v1v2,sum1);
+    }
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            flag[i][j]=0;       
+        }
+    }
+    for(int j=0;j<m;j++){
+        for(int i=0;i<n;i++){
+            flag[i][j]=arr[i][j]+v3;
+        }
+        ll sum1=0,sum2=0;
+        for(int k=0;k<n;k++){
+            sum1=sum1+abs(arr[k][j]);
+            sum2=sum2+abs(flag[k][j]);
+        }
+        ll sum3=abs(n*v4);
+        ll v3v4=max(sum2,sum3);
+        finalv3v4+=max(sum1,v3v4);
+    }
+    cout<<max(finalv1v2,finalv3v4)<<endl;
+    return 0;
+}
+Language: C++
