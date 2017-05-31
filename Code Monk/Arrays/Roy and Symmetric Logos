@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--){
+        int n,flag=0;
+        cin>>n;
+        string arr[n];
+        for(int i=0;i<n;i++){
+            cin>>arr[i];
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0,k=n-1;j<=k;j++,k--){
+                if(arr[i][j]!=arr[i][k]){
+                    flag=1;
+                    cout<<"NO"<<endl;
+                    break;
+                }
+            }
+            if(flag==1)
+                break;
+        }
+        if(flag==0){
+            for(int i=0;i<n;i++){
+                for(int j=0,k=n-1;j<=k;j++,k--){
+                    if(arr[j][i]!=arr[k][i]){
+                        flag=1;
+                        cout<<"NO"<<endl;
+                        break;
+                    }
+                }
+                if(flag==1)
+                    break;
+            }
+        }
+        if(flag==0){
+            cout<<"YES"<<endl;
+        }
+    }
+    return 0;
+}
