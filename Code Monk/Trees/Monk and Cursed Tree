@@ -1,0 +1,69 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+struct node{
+    ll data;
+    struct node *left;
+    struct node *right;
+};
+
+struct node* insert(struct node *root,ll p){
+    if(root==NULL){
+        struct node *temp=new node;
+        temp->data=p;
+        temp->left=NULL;
+        temp->right=NULL;
+        return temp;
+    }else if((root->data)>=p)
+        root->left=insert(root->left,p);
+    else
+        root->right=insert(root->right,p);
+    return root;
+}
+
+int maxipath(struct node *root,ll a){
+    struct node *temp=root;
+    ll mini=-1;
+    while(temp->data!=a){
+        if(temp->data>a){
+            mini=max(mini,temp->data);
+            temp=temp->left;
+        }else{
+            mini=max(mini,temp->data);
+            temp=temp->right;
+        }
+    }
+    ll res= max(mini,a);
+    return res;
+}
+
+int maxelement(struct node *root, ll a, ll b){
+    struct node *temp=root;
+    while(((temp->data<a) && (temp->data<b)) || ((temp->data>a) && (temp->data>b))){
+        if((temp->data>a) && (temp->data>b))
+            temp=temp->left;
+        else if((temp->data<a) && (temp->data<b))
+            temp=temp->right;
+    }
+    ll res=max(maxipath(temp,a),maxipath(temp,b));
+    return res;
+}
+
+int main()
+{
+    ll n,a,b;
+    cin>>n;
+    ll arr[n];
+    for(ll i=0;i<n;i++)
+        cin>>arr[i];
+    struct node *root=NULL;
+    root=insert(root,arr[0]);
+    for(ll i=1;i<n;i++){
+        root=insert(root,arr[i]);
+    }
+    cin>>a>>b;
+    ll ans=maxelement(root,a,b);
+    cout<<ans<<endl;
+    return 0;
+}
