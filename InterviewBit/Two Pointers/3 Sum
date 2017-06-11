@@ -1,0 +1,28 @@
+int Solution::threeSumClosest(vector<int> &A, int B) {
+    sort(A.begin(),A.end());
+    int i;
+    long long sum=0;
+    long long res=INT_MAX;
+    long long ans=0;
+    int j,k;
+    for(i=0;i<A.size()-2;i++){
+        j=i+1;
+        k=A.size()-1;
+        while(k>j){
+            sum=A[i]+A[j]+A[k];
+            if(abs(res-B)>abs(sum-B)){
+                res=sum;
+            }
+            if(sum>B){
+                k--;
+            }else{
+                j++;
+            }
+        }
+    }
+    return res;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
