@@ -1,0 +1,16 @@
+int Solution::solve(vector<int> &A, vector<int> &B, vector<int> &C) {
+    int ans=INT_MAX;
+    int i=A.size()-1, j=B.size()-1, k=C.size()-1;
+    while(i>=0 && j>=0 && k>=0){
+        int maxi=max(A[i],max(B[j],C[k]));
+        int mini=min(A[i],min(B[j],C[k]));
+        ans=min(ans,maxi-mini);
+        if(maxi==A[i])
+            i--;
+        else if(maxi==B[j])
+            j--;
+        else
+            k--;
+    }
+    return ans;
+}
