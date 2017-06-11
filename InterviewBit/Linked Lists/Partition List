@@ -1,0 +1,43 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+ListNode* Solution::partition(ListNode* A, int B) {
+    ListNode *smallhead=NULL,*smalltail=NULL,*greaterhead=NULL,*greatertail=NULL;
+    while(A!=NULL){
+        if(A->val<B){
+            if(smallhead==NULL){
+                smallhead=A;
+                smalltail=A;
+            }else{
+                smalltail->next=A;
+                smalltail=A;
+            }
+        }else{
+            if(greaterhead==NULL){
+                greaterhead=A;
+                greatertail=A;
+            }else{
+                greatertail->next=A;
+                greatertail=A;
+            }
+        }
+        A=A->next;
+    }
+    if(greatertail!=NULL){
+        greatertail->next=NULL;
+    }
+    if(smallhead==NULL){
+        return greaterhead;
+    }
+    smalltail->next=greaterhead;
+    return smallhead;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
