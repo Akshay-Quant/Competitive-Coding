@@ -1,0 +1,29 @@
+string Solution::convert(string A, int B) {
+    if(B==1)
+        return A;
+    string res[B];
+    bool directiondown=true;
+    int k=0;
+    for(int i=0;i<A.length();i++){
+        res[k].push_back(A[i]);
+        if(k==B-1){
+            directiondown=false;
+        }else if(k==0){
+            directiondown=true;
+        }
+        if(directiondown){
+            k++;
+        }else{
+            k--;
+        }
+    }
+    string ans;
+    for(int i=0;i<B;i++){
+        ans+=res[i];
+    }
+    return ans;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
