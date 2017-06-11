@@ -1,0 +1,22 @@
+int Solution::pow(int x, int n, int d) {
+    long long res=1;
+    long long prod=x;
+    if(n==0)
+        return 1%d;
+    while(n>0){
+        if(n%2){
+            res*=prod;
+        }
+        prod=(prod*prod)%d;
+        n=n/2;
+        if(res>d)
+            res=res%d;
+        if(res<0)
+            res=(d+res)%d;
+    }
+    return (int)res;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
