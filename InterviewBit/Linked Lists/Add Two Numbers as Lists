@@ -1,0 +1,49 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+
+ListNode* Solution::addTwoNumbers(ListNode* A, ListNode* B) {
+    if(A==NULL)
+        return B;
+    if(B==NULL)
+        return A;
+    int carry=(A->val+B->val)/10;
+    ListNode *res=new ListNode((A->val+B->val)%10);
+    ListNode *tail=res;
+    A=A->next;
+    B=B->next;
+    while(A!=NULL || B!=NULL || carry){
+        int a1,b1;
+        if(A!=NULL){
+            a1=A->val;
+        }else{
+            a1=0;
+        }
+        if(B!=NULL){
+            b1=B->val;
+        }else{
+            b1=0;
+        }
+        int sum=a1+b1+carry;
+        ListNode *temp=new ListNode(sum%10);
+        carry=sum/10;
+        if(A!=NULL){
+            A=A->next;
+        }
+        if(B!=NULL){
+            B=B->next;
+        }
+        tail->next=temp;
+        tail=temp;
+    }
+    return res;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
