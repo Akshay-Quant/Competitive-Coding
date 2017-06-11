@@ -1,0 +1,33 @@
+vector<int> Solution::searchRange(const vector<int> &A, int B) {
+    int low=0,high=A.size()-1,first,second;
+    while(high>=low){
+        int mid=low+(high-low)/2;
+        if(A[mid]>=B){
+            high=mid-1;
+        }else{
+            low=mid+1;
+        }
+    }
+    first=low;
+    low=0; high=A.size()-1;
+    while(high>=low){
+        int mid=low+(high-low)/2;
+        if(A[mid]>B){
+            high=mid-1;
+        }else{
+            low=mid+1;
+        }
+    }
+    second=high;
+    if(A[first]!=B || A[second]!=B){
+        first=-1; second=-1;
+    }
+    vector<int> res;
+    res.push_back(first);
+    res.push_back(second);
+    return res;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
