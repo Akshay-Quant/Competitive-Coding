@@ -1,0 +1,19 @@
+string Solution::convertToTitle(int A) {
+    string res;
+    while(A>0){
+        if(A%26==0){
+            res+='Z';
+            A=(A/26)-1;
+        }else{
+            char c=(A%26)+'A'-1;
+            res+=c;
+            A=A/26;
+        }
+    }
+    reverse(res.begin(),res.end());
+    return res;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
