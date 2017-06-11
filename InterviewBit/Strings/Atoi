@@ -1,0 +1,37 @@
+int Solution::atoi(const string &A) {
+    if(A[0]=='\0')
+        return 0;
+    int sign=1;
+    int i=0;
+    if(A[0]=='-'){
+        sign=-1;
+        i++;
+    }else if(A[0]=='+'){
+        sign=1;
+        i++;
+    }
+    long long res=0;
+    for(i;A[i]!=' ' && A[i]!='\0';i++){
+        if(A[i]>='0' && A[i]<='9'){
+            res=res*10+A[i]-'0';
+            if(res>INT_MAX && sign==1){
+                return INT_MAX;
+            }else if(res>INT_MAX && sign==-1){
+                 return INT_MIN;
+            }
+        }else{
+            if(res>INT_MAX && sign==1){
+                return INT_MAX;
+            }else if(res>INT_MAX && sign==-1){
+                return INT_MIN;
+            }else{
+                return sign*res;
+            }
+        }
+    }
+    return sign*res;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
