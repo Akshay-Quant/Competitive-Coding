@@ -1,0 +1,22 @@
+int Solution::minimize(const vector<int> &A, const vector<int> &B, const vector<int> &C) {
+    int i=0,j=0,k=0;
+    int res=INT_MAX;
+    while(i<A.size() && j<B.size() && k<C.size()){
+        int maxi=max(A[i],max(B[j],C[k]));
+        int mini=min(A[i],min(B[j],C[k]));
+        if(res>(maxi-mini)){
+            res=maxi-mini;
+        }
+        if(mini==A[i])
+            i++;
+        else if(mini==B[j])
+            j++;
+        else if(mini==C[k])
+            k++;
+    }
+    return res;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
