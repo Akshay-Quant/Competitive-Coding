@@ -1,0 +1,60 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+ListNode* reverse(ListNode* A){
+    struct ListNode *prev=NULL, *current=A, *next;
+    while(current!=NULL){
+        next=current->next;
+        current->next=prev;
+        prev=current;
+        current=next;
+    }
+    return prev;
+} 
+
+ 
+ListNode* Solution::reorderList(ListNode* A) {
+    struct ListNode *first,*last,*prevfirst,*prevlast,*temp;
+    struct ListNode *slow,*fast;
+    slow=A;
+    fast=slow->next;
+    while(fast!=NULL && fast->next!=NULL){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    temp=A;
+    int n;
+    while(temp!=NULL){
+        n++;
+        temp=temp->next;
+    }
+    prevfirst=NULL;
+    first=A;
+    last=slow->next;
+    slow->next=NULL;
+    last=reverse(last);
+    int flag=0;
+    while(last!=NULL || first!=NULL){
+        if(flag==0){
+            prevfirst=first;
+            first=first->next;
+            flag=1;
+        }else{
+            prevfirst->next=last;
+            prevlast=last->next;
+            last->next=first;
+            last=prevlast;
+            flag=0;
+        }
+    }
+    return A;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
