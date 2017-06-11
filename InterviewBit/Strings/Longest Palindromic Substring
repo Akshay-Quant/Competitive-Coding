@@ -1,0 +1,31 @@
+string fromcentre(string s,int a,int b){
+    int left=a,right=b;
+    int n=s.length();
+    while(left>=0 && right<=n-1 && s[left]==s[right]){
+        left--;
+        right++;
+    }
+    return s.substr(left+1,right-left-1);
+}
+
+string Solution::longestPalindrome(string A) {
+    int n=A.length();
+    if(n==0)
+        return "";
+    string palindrome=A.substr(0,1);
+    for(int i=0;i<n-1;i++){
+        string res1=fromcentre(A,i,i);
+        if(res1.length()>palindrome.length()){
+            palindrome=res1;
+        }
+        string res2=fromcentre(A,i,i+1);
+        if(res2.length()>palindrome.length()){
+            palindrome=res2;
+        }
+    }
+    return palindrome;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
