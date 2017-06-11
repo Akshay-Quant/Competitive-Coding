@@ -1,0 +1,14 @@
+// Input : X and Y co-ordinates of the points in order. 
+// Each point is represented by (X[i], Y[i])
+int Solution::coverPoints(vector<int> &X, vector<int> &Y) {
+    int a=X[0],b=Y[0];
+    int count=0;
+    for(int i=1;i<X.size();i++){
+        int distx=ceil(sqrt((X[i]-a)*(X[i]-a)));
+        int disty=ceil(sqrt((Y[i]-b)*(Y[i]-b)));
+        count+=max(distx,disty);
+        a=X[i];
+        b=Y[i];
+    }
+    return count;
+}
