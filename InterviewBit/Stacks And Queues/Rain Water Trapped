@@ -1,0 +1,21 @@
+int Solution::trap(const vector<int> &A) {
+    int left[A.size()];
+    int right[A.size()];
+    left[0]=A[0];
+    for(int i=1;i<A.size();i++){
+        left[i]=max(left[i-1],A[i]);
+    }
+    right[A.size()-1]=A[A.size()-1];
+    for(int i=A.size()-2;i>=0;i--){
+        right[i]=max(right[i+1],A[i]);
+    }
+    int area=0;
+    for(int i=0;i<A.size();i++){
+        area+=min(left[i],right[i])-A[i];
+    }
+    return area;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
