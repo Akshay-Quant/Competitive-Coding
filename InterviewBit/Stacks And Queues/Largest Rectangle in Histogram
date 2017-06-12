@@ -1,0 +1,40 @@
+int Solution::largestRectangleArea(vector<int> &A) {
+    stack<int> s;
+    int top=0, maxarea=0, area, breadth,i=0;
+    while(i<A.size()){
+        if(s.empty() || A[s.top()]<=A[i]){
+            s.push(i);
+            i++;
+        }else{
+            top=s.top();
+            s.pop();
+            if(s.empty()){
+                breadth=i;
+            }else{
+                breadth=i-s.top()-1;
+            }
+            area=A[top]*breadth;
+            if(area>maxarea){
+                maxarea=area;
+            }
+        }
+    }
+    while(!s.empty()){
+        top=s.top();
+        s.pop();
+        if(s.empty()){
+            breadth=i;
+        }else{
+            breadth=i-s.top()-1;
+        }
+        area=A[top]*breadth;
+        if(area>maxarea){
+            maxarea=area;
+        }
+    }
+    return maxarea;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
