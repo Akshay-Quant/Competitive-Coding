@@ -1,0 +1,17 @@
+int Solution::Mod(int A, int B, int C) {
+    if(B==0)
+        return 1%C;
+    long long temp=0;
+    if(B%2==0){
+        temp=Mod(A,B/2,C);
+        temp=(temp*temp)%C;
+    }else{
+        temp=A%C;
+        temp=(temp*Mod(A,B-1,C))%C;
+    }
+    return (int)(temp+C)%C;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
