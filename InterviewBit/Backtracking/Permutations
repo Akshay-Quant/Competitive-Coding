@@ -1,0 +1,23 @@
+void calpermute(vector<int> &A, vector<vector<int> > &res, int left, int n){
+    if(left==n){
+        res.push_back(A);
+        return;
+    }else{
+        for(int i=left;i<=n;i++){
+            swap(A[left],A[i]);
+            calpermute(A,res,left+1,n);
+            swap(A[left],A[i]);
+        }
+    }
+}
+
+vector<vector<int> > Solution::permute(vector<int> &A) {
+    vector<vector<int> > res;
+    int n=A.size();
+    calpermute(A,res,0,n-1);
+    return res;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
