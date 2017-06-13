@@ -1,0 +1,43 @@
+vector<string> tostring(const vector<int> &solution){
+    int n=solution.size();
+    vector<string> ans(n);
+    for(int i=0;i<n;i++){
+        ans[i]=string(n,'.');
+        ans[i][solution[i]]='Q';
+    }
+    return ans;
+}
+
+bool issafe(vector<int> &solution, int row,int col){
+    for(int k=0;k<row;k++){
+        if(col==solution[k] || row+col==k+solution[k] || row-col==k-solution[k]){
+            return false;
+        }
+    }
+    return true;
+}
+
+void implement(int row, vector<int> &solution, vector<vector<string> > &res){
+    int n=solution.size();
+    if(row==n){
+        res.push_back(tostring(solution));
+        return;
+    }
+    for(int j=0;j<n;j++){
+        if(issafe(solution,row,j)){
+            solution[row]=j;
+            implement(row+1,solution,res);
+        }
+    }
+}
+
+vector<vector<string> > Solution::solveNQueens(int A) {
+    vector<vector<string> > res;
+    vector<int> solution(A);
+    implement(0,solution,res);
+    return res;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
