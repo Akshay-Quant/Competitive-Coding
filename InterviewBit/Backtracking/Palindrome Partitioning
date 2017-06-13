@@ -1,0 +1,31 @@
+bool isPalindrome(string A,int low,int high){
+    while(low<high){
+        if(A[low]!=A[high])
+            return false;
+        low++;
+        high--;
+    }
+    return true;
+}
+
+void parti(vector<vector<string> > &res, vector<string> &current, int start, int n, string A){
+    if(start>=n){
+        res.push_back(current);
+        return;
+    }    
+    for(int i=start;i<n;i++){
+        if(isPalindrome(A,start,i)){
+            current.push_back(A.substr(start,i-start+1));
+            parti(res,current,i+1,n,A);
+            current.pop_back();
+        }
+    }
+}
+
+vector<vector<string> > Solution::partition(string A) {
+    vector<vector<string> > res;
+    vector<string> current;
+    int n=A.length();
+    parti(res,current,0,n,A);
+    return res;
+}
