@@ -1,0 +1,27 @@
+void generate(vector<int> &res, int n){
+    if(n==1){
+        res.push_back(0);
+        res.push_back(1);
+        return;
+    }
+    generate(res,n-1);
+    int size=res.size();
+    int maxi=pow(2,n-1);
+    for(int i=size-1;i>=0;i--){
+        res.push_back(res[i] | maxi);
+    }
+}
+
+vector<int> Solution::grayCode(int A) {
+    vector<int> res;
+    if(A==0){
+        res.push_back(0);
+        return res;
+    }
+    generate(res,A);
+    return res;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
