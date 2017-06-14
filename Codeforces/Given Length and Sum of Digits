@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+	int m,s;
+	string ans;
+	cin>>m>>s;
+	int n=9;
+	if(s>9*m || (s==0 && m>1)){
+		cout<<"-1 -1"<<endl;
+		return 0;
+	}
+	for(int i=0;i<m;i++){
+		ans.push_back('0');
+	}
+	for(int i=0;s>0 && i<m;i++){
+		for(int j=9;s>0 && j>=0;j--){
+			if(s>=j){
+				ans[i]+=j;
+				s-=j;
+				break;
+			}
+		}
+	}
+	string rev=string(ans.rbegin(),ans.rend());
+	if(rev[0]=='0'){
+		for(int i=0;i<m;i++){
+			if(rev[i]>'0'){
+				rev[0]='1';
+				rev[i]--;
+				break;
+			}
+		}
+	}
+	cout<<rev<<" "<<ans<<endl;
+	return 0;
+}
