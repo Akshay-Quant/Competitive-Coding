@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+	priority_queue<int> boys,girls;
+	int numboys,numgirls,count=0;
+	cin>>numboys;
+	while(numboys--){
+		int temp;
+		cin>>temp;
+		boys.push(temp);
+	}
+	cin>>numgirls;
+	while(numgirls--){
+		int temp;
+		cin>>temp;
+		girls.push(temp);
+	}
+	while(!boys.empty() && !girls.empty()){
+		int girllevel=girls.top();
+		int boylevel=boys.top();
+		if(abs(girllevel-boylevel)<2){
+			girls.pop();
+			boys.pop();
+			count++;
+		}else{
+			if(boylevel>girllevel){
+				boys.pop();
+			}else{
+				girls.pop();
+			}
+		}
+	}
+	cout<<count<<endl;
+	return 0;
+}
