@@ -1,0 +1,35 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+TreeNode* build(vector<int> &inorder,vector<int> &postorder,int start,int end,int *index){
+    if(start>end)
+        return NULL;
+    struct TreeNode* temp = new TreeNode(postorder[*index]);
+    (*index)--;
+    if(start==end)
+        return temp;
+    int i;
+    for(i = start;i <= end;i++){
+        if(inorder[i] == temp->val)
+            break;
+    }
+    temp->right = build(inorder, postorder, i+1, end, index);
+    temp->left = build(inorder, postorder, start, i-1, index);
+    return temp;
+} 
+ 
+TreeNode* Solution::buildTree(vector<int> &inorder, vector<int> &postorder) {
+    int index=postorder.size()-1;
+    TreeNode* root = build(inorder, postorder, 0, inorder.size()-1, &index);
+    return root;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
